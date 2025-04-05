@@ -4,13 +4,15 @@ from fastapi.responses import JSONResponse
 from app.cache import Cache
 from app.schemas import Intake
 
-router = APIRouter(prefix='/cache')
+router = APIRouter(prefix="/cache")
+
 
 @router.get("/stats")
 async def get_stats(request: Request):
     cache: Cache = request.app.state.cache
     stats = await cache.stats()
     return JSONResponse(stats)
+
 
 @router.get("/{key}")
 async def get_value(key: str, request: Request):
@@ -21,6 +23,7 @@ async def get_value(key: str, request: Request):
     except KeyError:
         raise HTTPException(404, f"{key=} not found")
 
+
 @router.put("/{key}")
 async def set_value(key: str, intake: Intake, request: Request):
     cache: Cache = request.app.state.cache
@@ -30,6 +33,7 @@ async def set_value(key: str, intake: Intake, request: Request):
     else:
         return JSONResponse({}, status_code=201)
 
+
 @router.delete("/{key}")
 async def delete_value(key: str, request: Request):
     cache: Cache = request.app.state.cache
@@ -38,4 +42,3 @@ async def delete_value(key: str, request: Request):
         return JSONResponse({}, status_code=204)
     except KeyError:
         raise HTTPException(404, f"{key=} not found")
-

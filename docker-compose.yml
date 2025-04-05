@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    volumes:
+      - ./log:/usr/src/app/log
     command: python -m app.main
     ports:
       - "$port:$port"
