@@ -1,0 +1,7 @@
+services:
+  app:
+    build:
+      context: .
+      target: test
+    restart: no
+    command: poetry run pytest tests
