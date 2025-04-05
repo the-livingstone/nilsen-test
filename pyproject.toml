@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "nilsen-test"
+version = "0.1.0"
+description = ""
+authors = ["Alexey Serikov <serikov.alexey42@gmail.com>"]
+readme = "README.md"
+packages = [{include = "nilsen_test"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.12"
+black = "^25.1.0"
+pydantic-settings = "^2.8.1"
+uvicorn = "^0.34.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
